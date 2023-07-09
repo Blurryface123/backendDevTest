@@ -1,0 +1,7 @@
+server:
+  port: 5000
+
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    path: /swagger-ui.html
