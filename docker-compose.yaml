@@ -33,3 +33,11 @@ services:
       - K6_OUT=influxdb=http://influxdb:8086/k6
     extra_hosts:
       - "host.docker.internal:host-gateway"
+  backenddevtest:
+    build:
+      context: ./backendDevTest
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
