@@ -5,3 +5,8 @@ springdoc:
   swagger-ui:
     disable-swagger-default-url: true
     path: /swagger-ui.html
+
+rest:
+  existing-apis:
+    base-url : ${existing-apis.base-url}
+    similarId: ${existing-apis.similarIds}

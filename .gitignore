@@ -1,0 +1,14 @@
+/.idea/.gitignore
+/backendDevTest/.gitignore
+/.idea/backendDevTest.iml
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/backendDevTest/.mvn/wrapper/maven-wrapper.jar
+/backendDevTest/.mvn/wrapper/maven-wrapper.properties
+/.idea/misc.xml
+/.idea/modules.xml
+/backendDevTest/mvnw
+/backendDevTest/mvnw.cmd
+/.idea/vcs.xml
+/backendDevTest/.mvn/wrapper/maven-wrapper.jar

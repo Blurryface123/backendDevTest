@@ -7,6 +7,7 @@ import com.example.backendDevTest.models.ProductDetail;
 import com.example.backendDevTest.services.MockService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
@@ -23,12 +24,18 @@ public class MockServiceImpl implements MockService {
 
     private final WebClient webClient;
 
+    @Value("${rest.existing-apis.base-url}")
+    private String BASE_URL;
+
+    @Value("${rest.existing-apis.similarId}")
+    private String SIMILAR_ID;
+
     /**
      * Instantiates a new Mock service.
      */
     @Autowired
     public MockServiceImpl() {
-        this.webClient = WebClient.create("http://localhost:3001");
+        this.webClient = WebClient.create(BASE_URL);
     }
 
     @Override
@@ -36,7 +43,7 @@ public class MockServiceImpl implements MockService {
     public List<Integer> getSimilarProductsId(int id) throws  MockServiceException {
         try {
             return webClient.get()
-                    .uri("/product/{id}/similarids",id)
+                    .uri(id+SIMILAR_ID)
                     .retrieve()
                     .bodyToMono(new ParameterizedTypeReference<List<Integer>>() {
                     })
@@ -57,7 +64,7 @@ public class MockServiceImpl implements MockService {
     public ProductDetail getProductDetailById(int id) {
         try {
             return webClient.get()
-                    .uri("/product/{id}",id)
+                    .uri(String.valueOf(id))
                     .retrieve()
                     .bodyToMono(new ParameterizedTypeReference<ProductDetail>() {
                     })

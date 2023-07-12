@@ -8,4 +8,4 @@ COPY ../target/backendDevTest-0.0.1-SNAPSHOT.jar /app/backendDevTest.jar
 EXPOSE 5000
 
 # Define el comando de inicio de la aplicación
-CMD ["java", "-jar", "/app/backendDevTest.jar"]
+ENTRYPOINT  ["java","-Djava.security.egd=file:/dev/urandom", "-jar", "/app/backendDevTest.jar"]

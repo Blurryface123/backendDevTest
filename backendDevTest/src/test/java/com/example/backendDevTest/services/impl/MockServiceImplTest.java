@@ -31,7 +31,7 @@ class MockServiceImplTest {
     @BeforeEach
     public void setup() {
         webTestClient = WebTestClient.bindToServer()
-                .baseUrl("http://localhost:3001")  // Establece la URL base del endpoint externo
+                .baseUrl("http://host.docker.internal:3001")  // Establece la URL base del endpoint externo
                 .responseTimeout(Duration.ofMillis(999))
                 .defaultHeader("Content-Type", "application/json")
                 .build();
