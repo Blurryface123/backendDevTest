@@ -37,10 +37,10 @@ mvn clean install
 
 4. After successful compilation, run the following command to execute the project:
 ```
- java -jar target/backenddevtest.jar
+mvn spring-boot:run
 ```
 
-5. Once the project has started successfully, you can access the Swagger URL in your browser.-
+5. Once the project has started successfully, you can access the Swagger URL in your browser.
 
 ## Swagger
 Once the project has started successfully, you can access the Swagger URL in your browser:
