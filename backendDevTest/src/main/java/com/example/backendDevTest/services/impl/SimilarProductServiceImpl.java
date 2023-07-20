@@ -1,6 +1,5 @@
 package com.example.backendDevTest.services.impl;
 
-import com.example.backendDevTest.constants.ErrorConstants;
 import com.example.backendDevTest.exception.BackInvocationException;
 import com.example.backendDevTest.exception.MockServiceException;
 import com.example.backendDevTest.models.ProductDetail;
@@ -9,10 +8,9 @@ import com.example.backendDevTest.services.SimilarProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * The type Similar product service.
@@ -38,24 +36,11 @@ public class SimilarProductServiceImpl implements SimilarProductService {
 
     @Override
     public List<ProductDetail> getProductById(int productId) throws BackInvocationException, MockServiceException {
-        try{
-            List<ProductDetail> productDetailList = new ArrayList<>();
-            List<Integer> productIdList = mockService.getSimilarProductsId(productId);
-            productIdList.forEach(id-> {
-                        ProductDetail productDetail = mockService.getProductDetailById(id);
-                        if (productDetail!=null){
-                            productDetailList.add(productDetail);
-                        }
-                    }
-            );
-            return productDetailList;
-        }catch (Exception e){
-            if (!(e.getCause() instanceof WebClientResponseException)){
-                log.error(ErrorConstants.GETPRODUCTBYID_LOG_MSG,productId, e.getMessage());
-                throw new BackInvocationException(ErrorConstants.GETPRODUCTBYID_METHOD_MSG,e);
-            }
-            throw new MockServiceException(ErrorConstants.GETSIMILARPRODUCTSID_METHOD_MSG,e);
-        }
 
+        List<Integer> productIdList = mockService.getSimilarProductsId(productId);
+        return productIdList.stream()
+                .map(mockService::getProductDetailById)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 }

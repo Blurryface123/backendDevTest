@@ -5,18 +5,15 @@ public class ErrorConstants {
 
 
     //MOCK_SERVICE
-    public static final String GETSIMILARPRODUCTSID_METHOD_NAME = "getSimilarProductsId: %s";
-    public static final String GETSIMILARPRODUCTSID_METHOD_MSG = "Failed to obtain ids";
+    public static final String GETSIMILARPRODUCTSID_LOG_MSG = "Failed to obtain similar products for ID: {}. Message: {}";
 
-    public static final String GETSIMILARPRODUCTSID_LOG_MSG = "Failed to obtain similar products for ID: {}. Status code:{}. Message: {}";
-
-    public static final String GETPRODUCTDETAILBYID_LOG_MSG = "Failed to obtain product details for ID: {}. Status code:{}. Message: {}";
+    public static final String GETPRODUCTDETAILBYID_LOG_MSG = "Failed to obtain product details for ID: {}. Message: {}";
 
     //SIMILAR_PRODUCT_SERVICE
-    public static final String GETPRODUCTBYID_LOG_MSG = "Failed while building the product detail List for ProductId: {}. Message: {}";
+    public static final String MOCKSERVICE_INTERNAL_ERROR_MSG = "External Api internal server error while getting similar products." +
+            "Product Id: %s";
 
-    public static final String GETPRODUCTBYID_METHOD_MSG = "Failed while building the product detail List";
-
+    public static final String MOCKSERVICE_TIMEOUT_ERROR_MSG ="Timeout occurred when calling the external Api";
     public ErrorConstants() {
     }
 }
