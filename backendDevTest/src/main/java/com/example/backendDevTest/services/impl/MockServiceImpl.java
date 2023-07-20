@@ -55,7 +55,7 @@ public class MockServiceImpl implements MockService {
                     .onStatus(HttpStatus->HttpStatus.is5xxServerError(), response -> handleBackInvocationException(id))
                     .bodyToMono(new ParameterizedTypeReference<List<Integer>>() {
                     })
-                    .timeout(Duration.ofSeconds(3L))
+                    .timeout(Duration.ofSeconds(56L))
                     .block();
 
     }
@@ -70,7 +70,7 @@ public class MockServiceImpl implements MockService {
                     .onStatus(HttpStatus->HttpStatus.is5xxServerError(), response -> handleBackInvocationException(id))
                     .bodyToMono(new ParameterizedTypeReference<ProductDetail>() {
                     })
-                    .timeout(Duration.ofSeconds(3L))
+                    .timeout(Duration.ofSeconds(56L))
                     .onErrorResume(TimeoutException.class, e -> handleMockTimeoutException(e))
                     .block();
     }
